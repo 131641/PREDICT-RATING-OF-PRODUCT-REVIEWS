@@ -127,7 +127,12 @@ def predict():
 	  	return "BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0])
 	  elif(algo == '2'):
 	  	pred_bow = naive_bow(review)
-	  	pred_tfidf = naive_tfidf(review)
+	  	pred_tfidf = "Model Not yet deployed`" #naive_tfidf(review)
+		if(int(pred_bow[0]) == 1):
+	  		bow_output = "Positive"
+	  	else:
+	  		bow_output = "Negative"
+		return render_template('upload.html', pred_bow = bow_output, pred_tf = pred_tfidf)
 	  elif(algo == '3'):
 	  	pred_bow = lr_bow(review)
 	  	pred_tfidf = lr_tfidf(review)
