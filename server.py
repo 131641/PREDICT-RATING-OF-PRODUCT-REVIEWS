@@ -36,6 +36,7 @@ def tfidfn(review):
 ## KNN
 def knn_bow(review):
 	review = bow(review)
+	type(review)
 	loaded_model = pickle.load(open('model1/KNN_BOW.sav', 'rb'))
 	result = loaded_model.predict(review)
 	print(result)
@@ -123,9 +124,10 @@ def predict():
 	  if(algo == '1'):
 	  	pred_bow = knn_bow(review)
 	  	pred_tfidf = knn_tfidf(review)
+	  	
 	  elif(algo == '2'):
 	  	pred_bow = naive_bow(review)
-	  	pred_tfidf = "Model Not yet deployed`" #naive_tfidf(review)
+	  	pred_tfidf = "Model not yet deployed" #naive_tfidf(review)
 	  	if(int(pred_bow[0]) == 1):
 	  		bow_output = "Positive"
 	  	else:
