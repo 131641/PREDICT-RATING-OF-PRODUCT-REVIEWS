@@ -78,6 +78,21 @@ def dt_tfidf(review):
 	print(result)
 	return result
 	
+## SVM
+def svm_bow(review):
+	review = bow(review)
+	loaded_model = pickle.load(open('model1/SVM_BOW.sav', 'rb'))
+	result = loaded_model.predict(review)
+	print(result)
+	return result
+	
+def svm_tfidf(review):
+	review = tfidf(review)
+	loaded_model = pickle.load(open('model1/SVM_TFIDF.sav', 'rb'))
+	result = loaded_model.predict(review)
+	print(result)
+	return result
+	
 ## Naive Bayes
 def naive_bow(review):
 	review = bown(review)
@@ -97,6 +112,7 @@ def naive_tfidf(review):
 def welcome():
 	return render_template('amazon.html')
 	
+	
 @app.route('/predict', methods = ["GET","POST"])
 def predict():
 	if request.method == 'POST':
@@ -112,18 +128,28 @@ def predict():
 	  elif(algo == '2'):
 	  	pred_bow = naive_bow(review)
 	  	pred_tfidf = naive_tfidf(review)
-	  	return "BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0])
 	  elif(algo == '3'):
 	  	pred_bow = lr_bow(review)
 	  	pred_tfidf = lr_tfidf(review)
-	  	return "BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0])
 	  elif(algo == '4'):
 	  	pred_bow = dt_bow(review)
-	  	pred_tfidf = dt_tfidf(review)
-	  	return "BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0])
+	  	pred_tfidf = dt_tfidf(review)	  	
+	  elif(algo == '5'):
+	  	pred_bow = svm_bow(review)
+	  	pred_tfidf = svm_tfidf(review)
 	  else:
 	  	return "Somthing went wrong"
-		  
+		 
+	  if(int(pred_bow[0]) == 1):
+	  	bow_output = "Positive"
+	  else:
+	  	bow_output = "Negative"
+	  if(int(pred_tfidf[0]) == 1):
+	  	tfidf_output = "Positive"
+	  else:
+	  	tfidf_output = "Negative"
+	  	
+	  return render_template('upload.html', pred_bow = bow_output, pred_tf = tfidf_output)
 		  
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
