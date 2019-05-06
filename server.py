@@ -123,8 +123,6 @@ def predict():
 	  if(algo == '1'):
 	  	pred_bow = knn_bow(review)
 	  	pred_tfidf = knn_tfidf(review)
-	  	print("BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0]))
-	  	return "BOW : "+str(pred_bow[0])+" TFIDF : "+str(pred_tfidf[0])
 	  elif(algo == '2'):
 	  	pred_bow = naive_bow(review)
 	  	pred_tfidf = "Model Not yet deployed`" #naive_tfidf(review)
