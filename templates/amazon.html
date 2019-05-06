@@ -1,0 +1,60 @@
+<html>
+<head>
+</head>
+<body>
+<title>Predict Rating Of Product Review</title>
+<link rel="stylesheet" href="static/product.css">
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body style="background-color:powderblue;">
+	<h2><center><font color = "red">Predict Rating Of Product Review </color></center></h2>
+	<form action = "/predict" method = "POST" enctype = "multipart/form-data">
+	<table align="center" cellpadding = "10">
+		<tr>
+			<td>Enter Your Review:</td>
+			<td><input type="text" name="review" maxlength="30"/>
+			(max 30 characters a-z and A-Z)
+			</td>
+		</tr>
+		<!--<tr>
+			<td>Choose Vector Representation Technique:</td>
+			<td>
+				<select name="vect" id="Featurization">
+				<option value="1">BOW</option>
+				<option value="2">TFIDF</option>
+				<option value="3">AVG Word2Vec</option>
+				<option value="4">TFIDF Weighted Word2Vec</option>
+				</select>
+			</td>
+		</tr>-->
+		<tr>
+			<td>Choose your Algorithm:</td><br>
+			<td>
+			<select name="algo" id="ML Algortihms">
+			<option value="1">KNN</option>
+			<option value="2">Naive Bayes</option>
+			<option value="3">Logistic Regression</option>
+			<option value="4">Decision Tree</option>
+			<option value="5">SVM</option>
+			<option value="6">XG-Boost</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<!--<input type="submit" value="Submit"> -->
+			<input type = "submit" class="btn btn-2"/>
+			<input type="reset" value="Reset">
+			</td>
+		</tr>
+	</table>
+	</form>
+	<img src="static/product.jpg" alt="Trulli" width="500" height="333">
+</body>
+</html>
